@@ -8,7 +8,7 @@ public class Item {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "BOOK_ID")
+    @JoinColumn(name = "book_id")
     private Book book;
 
     private String quality;

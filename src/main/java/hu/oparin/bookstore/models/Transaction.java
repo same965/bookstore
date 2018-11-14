@@ -1,7 +1,8 @@
 package hu.oparin.bookstore.models;
 
 import javax.persistence.*;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 public class Transaction {
@@ -9,23 +10,28 @@ public class Transaction {
     @GeneratedValue
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @OneToMany
-    @JoinTable(name = "item")
-    private List<Item> items;
+    @ManyToMany
+    @JoinTable(name = "transaction_item",
+               joinColumns = {@JoinColumn(name = "transaction_id")},
+               inverseJoinColumns = {@JoinColumn(name = "item_id")})
+    private Set<Item> items;
 
     private String type;
+    private LocalDate date;
 
     public Transaction() {
+        this.date = LocalDate.now();
     }
 
-    public Transaction(Customer customer, List<Item> items, String type) {
+    public Transaction(Customer customer, Set<Item> items, String type) {
         this.customer = customer;
         this.items = items;
         this.type = type;
+        this.date = LocalDate.now();
     }
 
     public Long getId() {
@@ -44,11 +50,11 @@ public class Transaction {
         this.customer = customer;
     }
 
-    public List<Item> getItems() {
+    public Set<Item> getItems() {
         return items;
     }
 
-    public void setItems(List<Item> items) {
+    public void setItems(Set<Item> items) {
         this.items = items;
     }
 
