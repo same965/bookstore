@@ -40,7 +40,7 @@ public class WebController {
         return "newbook";
     }
 
-    @PostMapping("addnewbook")
+    @PostMapping("/addnewbook")
     public String addNewBook(@ModelAttribute(value = "author") String author,
                                 @ModelAttribute(value = "title") String title,
                                 @ModelAttribute(value = "historicalPrice") int historicalPrice,
@@ -56,7 +56,7 @@ public class WebController {
         return "newitem";
     }
 
-    @PostMapping("addnewitem")
+    @PostMapping("/addnewitem")
     public String addNewItem(@ModelAttribute(value = "author") String author,
                              @ModelAttribute(value = "title") String title,
                              @ModelAttribute(value = "historicalPrice") int historicalPrice,
@@ -71,6 +71,18 @@ public class WebController {
     public String customerPage(Model model) {
         model.addAttribute("customers", customerService.getCustomers());
         return "customer";
+    }
+
+    @GetMapping("/newcustomer")
+    public String newCustomerPage() {
+        return "newcustomer";
+    }
+
+    @PostMapping("/addnewcustomer")
+    public String addNewCustomer(@ModelAttribute(value = "name") String name,
+                                 @ModelAttribute(value = "email") String email) {
+        customerService.create(name, email);
+        return "redirect:/customer";
     }
 
 }

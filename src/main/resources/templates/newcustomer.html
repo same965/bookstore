@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bookstore #</title>
+    <meta charset="utf-8" />
+</head>
+<body>
+<h1 style="font-size: 60px; color: darkblue">Bookstore</h1>
+<h3 style="font-size: 36px; color: lightseagreen">New Customer:</h3>
+<form action="#" th:action="@{/addnewcustomer}" method="post">
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" minlength="1" id="name" name="name" required/>
+    </div>
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" placeholder="Please enter your email" id="email" name="email" required/>
+    </div>
+    <div>
+        <input type="submit" value="Submit">
+    </div>
+    <div>
+</form>
+</body>
+</html>

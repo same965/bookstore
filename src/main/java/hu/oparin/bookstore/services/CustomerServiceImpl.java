@@ -24,4 +24,9 @@ public class CustomerServiceImpl implements CustomerService {
         customerRepository.findAll().forEach(customers::add);
         return customers;
     }
+
+    @Override
+    public void create(String name, String email) {
+        customerRepository.save(new Customer(name, email));
+    }
 }
