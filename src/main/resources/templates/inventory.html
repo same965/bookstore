@@ -26,6 +26,11 @@
             <td th:text="${item.isSold()}"></td>
         </tr>
     </table>
-
+    <br>
+    <form action="#" th:action="@{/newbook}" method="get">
+        <div>
+            <input type="submit" value="New book">
+        </div>
+    </form>
 </body>
 </html>
