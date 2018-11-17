@@ -85,4 +85,9 @@ public class WebController {
         return "redirect:/customer";
     }
 
+    @GetMapping("/purchase")
+    public String purchasePage() {
+        return "purchase";
+    }
+    
 }
