@@ -19,4 +19,14 @@ public class BookServiceImpl implements BookService {
     public void create(String author, String title, int historicalPrice, int rarity, int liquidity, String domain) {
         bookRepository.save(new Book(author, title, historicalPrice, rarity, liquidity, domain));
     }
+
+    @Override
+    public Long getId(String author, String title) {
+        return bookRepository.findByAuthorAndTitle(author, title).getId();
+    }
+
+    @Override
+    public Book getBookById(Long id) {
+        return bookRepository.findById(id).get();
+    }
 }

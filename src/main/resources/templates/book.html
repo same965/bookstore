@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Bookstore Application</title>
+</head>
+<h1>Book</h1>
+<body>
+<a href = "/">Main page</a>
+<br>
+<p th:text=" 'Author: ' + ${book.getAuthor()}"></p>
+<p th:text=" 'Title: ' + ${book.getTitle()}"></p>
+<p th:text=" 'Historical Price: ' + ${book.getHistoricalPrice()}"></p>
+<p th:text=" 'Rarity: ' + ${book.getRarity()}"></p>
+<p th:text=" 'Liquidity: ' + ${book.getLiquidity()}"></p>
+    
+<br>
+<form action="#" th:action="@{/purchase}" method="get">
+    <div>
+        <input type="submit" value="Purchase a copy of this book">
+    </div>
+</form>
+</body>
+</html>

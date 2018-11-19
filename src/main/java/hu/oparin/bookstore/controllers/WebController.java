@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -48,7 +49,13 @@ public class WebController {
                                 @ModelAttribute(value = "liquidity") int liquidity,
                                 @ModelAttribute(value = "domain") String domain) {
         bookService.create(author, title, historicalPrice, rarity, liquidity, domain);
-        return "redirect:/inventory";
+        return "redirect:/book/" + bookService.getId(author, title);
+    }
+
+    @GetMapping("/book/{id}")
+    public String bookPage(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("book", bookService.getBookById(id));
+        return "book";
     }
 
     @GetMapping("/newitem")
@@ -89,5 +96,10 @@ public class WebController {
     public String purchasePage() {
         return "purchase";
     }
-    
+
+    @PostMapping("/purchasebook")
+    public String addNewItem() {
+        return "redirect:/";
+    }
+
 }
