@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bookstore #</title>
+    <meta charset="utf-8" />
+</head>
+<body>
+<h1 style="font-size: 60px; color: darkblue">Bookstore</h1>
+<h3 style="font-size: 36px; color: lightseagreen">Purchasing new book:</h3>
+<form action="#" th:action="@{/addnewitem}" method="post">
+    <div>
+        <label for="author">Author:</label>
+        <input type="text" minlength="1" id="author" name="author" required/>
+    </div>
+    <div>
+        <label for="title">Title:</label>
+        <input type="text" minlength="1" id="title" name="title" required/>
+    </div>
+    <div>
+        <label for="quality">Quality:</label>
+        <input type="text" id="quality" name="quality" />
+    </div>
+    <div>
+        <label for="cost">Price:</label>
+        <input type="text" id="cost" name="cost" />
+    </div>
+    <div>
+        <input type="submit" value="Submit">
+    </div>
+</form>
+</body>
+</html>

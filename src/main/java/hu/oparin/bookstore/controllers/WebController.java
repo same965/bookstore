@@ -97,7 +97,14 @@ public class WebController {
         return "purchase";
     }
 
-    @PostMapping("/purchasebook")
+    @PostMapping("/purchase/book")
+    public String chooseBook(@ModelAttribute(value = "author") String author, Model model) {
+        model.addAttribute("search", bookService.checkAuthor(author));
+        model.addAttribute("books", bookService.booksByAuthor(author));
+        return "purchase";
+    }
+
+    @PostMapping("/newitem")
     public String addNewItem() {
         return "redirect:/";
     }
