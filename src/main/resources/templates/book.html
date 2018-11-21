@@ -24,7 +24,10 @@
     <div th:case="3">very liquid</div>
 </th:block>
 <br>
-<form action="#" th:action="@{/newitem}" method="get">
+<form action="#" th:action="@{/purchase/book/} + ${id}" method="get">
+    <div>
+        <input type="hidden" name="id" id="id" th:value="${book.getId()}" />
+    </div>
     <div>
         <input type="submit" value="Purchase a copy of this book">
     </div>
