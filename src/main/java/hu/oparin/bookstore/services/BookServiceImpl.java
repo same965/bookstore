@@ -35,7 +35,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public boolean checkAuthor(String author) {
-        if (bookRepository.findAllByAuthor(author) != null) {
+        if (bookRepository.findAllByAuthorIsContaining(author) != null) {
             return true;
         }
         return false;
@@ -46,7 +46,7 @@ public class BookServiceImpl implements BookService {
         List<Book> books = new ArrayList<>();
 
         if (checkAuthor(author)) {
-            bookRepository.findAllByAuthor(author).forEach(books::add);
+            bookRepository.findAllByAuthorIsContaining(author).forEach(books::add);
         }
 
         return books;
