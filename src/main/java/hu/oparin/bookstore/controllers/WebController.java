@@ -7,10 +7,7 @@ import hu.oparin.bookstore.services.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class WebController {
@@ -94,19 +91,19 @@ public class WebController {
 
     @GetMapping("/purchase")
     public String purchasePage() {
-        return "purchase";
+         return "purchase";
     }
 
     @PostMapping("/purchase/book")
     public String chooseBook(@ModelAttribute(value = "author") String author, Model model) {
-        model.addAttribute("search", bookService.checkAuthor(author));
         model.addAttribute("books", bookService.booksByAuthor(author));
-        return "purchase";
+        model.addAttribute("search", bookService.checkAuthor(author));
+        return "searchbook";
     }
 
-    @PostMapping("/newitem")
-    public String addNewItem() {
-        return "redirect:/";
+    @GetMapping("/purchase/book/{id}")
+    public String purchaseBook(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("id", bookService.getBookById(id));
+        return "newitem";
     }
-
 }

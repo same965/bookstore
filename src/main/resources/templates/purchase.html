@@ -5,32 +5,18 @@
     <meta charset="utf-8" />
 </head>
 <body>
-<h1 style="font-size: 60px; color: darkblue">Bookstore</h1>
-<h3 style="font-size: 36px; color: lightseagreen">Purchasing new book:</h3>
-<form action="#" th:action="@{/newbook}" method="get">
-    <input type="submit" value="Add new book">
-</form>
-<form action="#" th:action="@{/purchase/book}" method="post">
-    <label for="author">Author:</label>
-    <input type="text" minlength="1" id="author" name="author" required/>
-    <input type="submit" value="Check author">
-</form>
-<div th:if="${search}">
-    <table style="width:50%; height:100px; font-size: large">
-        <tr style="background-color:lightblue">
-            <th>Author</th>
-            <th>Title</th>
-            <th>Historical price</th>
-            <th>Domain</th>
-        </tr>
-        <tr th:each="book : ${books}" style="background-color:lightgray" align="center">
-            <td th:text="${book.getAuthor()}"></td>
-            <td th:text="${book.getTitle()}"></td>
-            <td th:text="${book.getHistoricalPrice()}"></td>
-            <td th:text="${book.getDomain()}"></td>
-        </tr>
-    </table>
-</div>
-<div th:unless="${search}">Books of this author haven't been saved yet. Please add a new book!</div>
+    <h1 style="font-size: 60px; color: darkblue">Bookstore</h1>
+    <h3 style="font-size: 36px; color: lightseagreen">Purchasing new book:</h3>
+    <h4 style="font-size: 30px; color: lightseagreen">Search books by author in previous transactions</h4>
+    <form action="#" th:action="@{/purchase/book}" method="post">
+        <label for="author">Author:</label>
+        <input type="text" minlength="1" id="author" name="author" required/>
+        <input type="submit" value="Check author">
+    </form>
+    <h4 style="font-size: 30px; color: lightseagreen">Or enter data of a new book</h4>
+    <form action="#" th:action="@{/newbook}" method="get">
+        <input type="submit" value="Add new book">
+    </form>
+
 </body>
 </html>
