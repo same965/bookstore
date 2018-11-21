@@ -11,9 +11,18 @@
 <p th:text=" 'Author: ' + ${book.getAuthor()}"></p>
 <p th:text=" 'Title: ' + ${book.getTitle()}"></p>
 <p th:text=" 'Historical Price: ' + ${book.getHistoricalPrice()}"></p>
-<p th:text=" 'Rarity: ' + ${book.getRarity()}"></p>
-<p th:text=" 'Liquidity: ' + ${book.getLiquidity()}"></p>
-
+<p>Rarity: </p>
+    <th:block th:switch="${book.getRarity()}">
+        <div th:case="1">very rare</div>
+        <div th:case="2">slightly rare</div>
+        <div th:case="3">not rare</div>
+    </th:block>
+<p>Liquidity: </p>
+<th:block th:switch="${book.getLiquidity()}">
+    <div th:case="1">slightly liquid</div>
+    <div th:case="2">quite liquid</div>
+    <div th:case="3">very liquid</div>
+</th:block>
 <br>
 <form action="#" th:action="@{/newitem}" method="get">
     <div>
