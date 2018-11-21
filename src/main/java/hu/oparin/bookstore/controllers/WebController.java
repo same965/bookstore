@@ -55,22 +55,6 @@ public class WebController {
         return "book";
     }
 
-    @GetMapping("/newitem")
-    public String newItemPage() {
-        return "newitem";
-    }
-
-    @PostMapping("/addnewitem")
-    public String addNewItem(@ModelAttribute(value = "author") String author,
-                             @ModelAttribute(value = "title") String title,
-                             @ModelAttribute(value = "historicalPrice") int historicalPrice,
-                             @ModelAttribute(value = "rarity") int rarity,
-                             @ModelAttribute(value = "liquidity") int liquidity,
-                             @ModelAttribute(value = "domain") String domain) {
-        bookService.create(author, title, historicalPrice, rarity, liquidity, domain);
-        return "redirect:/inventory";
-    }
-
     @GetMapping("/customer")
     public String customerPage(Model model) {
         model.addAttribute("customers", customerService.getCustomers());
@@ -103,7 +87,16 @@ public class WebController {
 
     @GetMapping("/purchase/book/{id}")
     public String purchaseBook(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("id", bookService.getBookById(id));
+        model.addAttribute("book", bookService.getBookById(id));
+        model.addAttribute("recommendation", bookService.calculateRecommendedPrice(id));
         return "newitem";
+    }
+
+    @PostMapping("/addnewitem")
+    public String addNewItem(@ModelAttribute(value = "quality") int quality,
+                             @ModelAttribute(value = "cost") int cost,
+                             @ModelAttribute(value = "id") Long id) {
+        itemService.create(id, quality, cost);
+        return "redirect:/inventory";
     }
 }

@@ -51,4 +51,23 @@ public class BookServiceImpl implements BookService {
 
         return books;
     }
+
+    @Override
+    public double calculateRecommendedPrice(Long id) {
+        Book book = bookRepository.findById(id).get();
+        double rarity = 1;
+        if (book.getRarity() == 1) {
+            rarity *= 1.25;
+        } else if (book.getRarity() == 3) {
+            rarity *= 0.75;
+        }
+
+        double liquidity = 1;
+        if (book.getLiquidity() == 1) {
+            liquidity *= 0.75;
+        } else if (book.getLiquidity() == 3) {
+            liquidity *= 1.25;
+        }
+        return book.getHistoricalPrice() * rarity * liquidity;
+    }
 }

@@ -5,13 +5,14 @@ import javax.persistence.*;
 @Entity
 public class Item {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "book_id")
     private Book book;
 
-    private String quality;
+    private int quality;
     private int price;
     private int cost;
     private boolean isSold;
@@ -19,8 +20,7 @@ public class Item {
     public Item() {
     }
 
-    public Item(Long id, Book book, String quality, int price, int cost, boolean isSold) {
-        this.id = id;
+    public Item(Book book, int quality, int price, int cost, boolean isSold) {
         this.book = book;
         this.quality = quality;
         this.price = price;
@@ -44,11 +44,11 @@ public class Item {
         this.book = book;
     }
 
-    public String getQuality() {
+    public int getQuality() {
         return quality;
     }
 
-    public void setQuality(String quality) {
+    public void setQuality(int quality) {
         this.quality = quality;
     }
 

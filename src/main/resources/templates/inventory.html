@@ -14,14 +14,12 @@
     <br>
     <table style="width:50%; height:100px; font-size: large">
         <tr style="background-color:lightblue">
-            <th>ID</th>
             <th>Author</th>
             <th>Title</th>
             <th>Quality</th>
             <th>Sold</th>
         </tr>
         <tr th:each="item : ${items}" style="background-color:lightgray" align="center">
-            <td th:text="${item.getId()}"></td>
             <td th:text="${item.getBook().getAuthor()}"></td>
             <td th:text="${item.getBook().getTitle()}"></td>
             <td th:text="${item.getQuality()}"></td>

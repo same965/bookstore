@@ -10,4 +10,5 @@ public interface BookService {
     Book getBookById(Long id);
     boolean checkAuthor(String author);
     List<Book> booksByAuthor(String author);
+    double calculateRecommendedPrice(Long id);
 }

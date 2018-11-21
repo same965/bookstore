@@ -6,19 +6,23 @@
 </head>
 <body>
 <h1 style="font-size: 60px; color: darkblue">Bookstore</h1>
-<h3 style="font-size: 36px; color: lightseagreen">Purchasing new book:</h3>
+<h3 style="font-size: 36px; color: lightseagreen">Purchasing new copy:</h3>
+<p th:text=" 'Author: ' + ${book.getAuthor()}"></p>
+<p th:text=" 'Title: ' + ${book.getTitle()}"></p>
+<p th:text=" 'Historical Price: ' + ${book.getHistoricalPrice()}"></p>
+<p th:text=" 'Recommended Price: ' + ${recommendation}"></p>
 <form action="#" th:action="@{/addnewitem}" method="post">
     <div>
-        <label for="author">Author:</label>
-        <input type="text" minlength="1" id="author" name="author" required/>
-    </div>
-    <div>
-        <label for="title">Title:</label>
-        <input type="text" minlength="1" id="title" name="title" required/>
+        <input type="hidden" name="id" id="id" th:value="${book.getId()}" />
     </div>
     <div>
         <label for="quality">Quality:</label>
-        <input type="text" id="quality" name="quality" />
+        <select id="quality" name="quality" >
+            <option selected disabled>Please select...</option>
+            <option value="1">poor quality</option>
+            <option value="2">fair quality</option>
+            <option value="3">good quality</option>
+        </select>
     </div>
     <div>
         <label for="cost">Price:</label>
