@@ -102,4 +102,10 @@ public class WebController {
         return "redirect:/inventory";
     }
 
+    @PostMapping("/searchitem")
+    public String searchItemByAuthor(@ModelAttribute(value = "author") String author, Model model) {
+        model.addAttribute("items", itemService.getItemsByAuthor(author));
+        return "searchitem";
+    }
+
 }

@@ -33,4 +33,20 @@ public class ItemServiceImpl implements ItemService {
         Book book = bookService.getBookById(id);
         itemRepository.save(new Item(book, quality, 0, cost, false));
     }
+
+    @Override
+    public List<Item> getItemsByAuthor(String author) {
+        List<Book> books = bookService.booksByAuthor(author);
+
+        List<Item> items = new ArrayList<>();
+
+        for (Book book : books) {
+            List<Item> foundItems = itemRepository.findAllByBook(book);
+            for (Item founditem : foundItems) {
+                items.add(founditem);
+            }
+        }
+
+        return items;
+    }
 }
