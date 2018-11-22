@@ -15,7 +15,11 @@
         <th>Author</th>
         <th>Title</th>
         <th>Quality</th>
-        <th>Sold</th>
+        <th>Cost</th>
+        <th>Price</th>
+        <th>Status</th>
+        <th>Edit</th>
+        <th>Sell</th>
     </tr>
     <tr th:each="item : ${items}" style="background-color:lightgray" align="center">
         <td th:text="${item.getBook().getAuthor()}"></td>
@@ -31,7 +35,27 @@
                 <div>good</div>
             </div>
         </td>
-        <td th:text="${item.isSold()}"></td>
+        <td th:text="${item.getCost()}"></td>
+        <td>
+            <div th:if="${item.getPrice() > 0}" th:text="${item.getPrice()}"></div>
+            <div th:unless="${item.getPrice() > 0}">
+                <div><a th:href="@{'/edititem/{id}'(id=${item.getId()})}" th:text="'Please set the price'" > </a></div>
+            </div>
+        </td>
+        <td>
+            <div th:unless="${item.isSold()}">
+                <div>for sale</div>
+            </div>
+            <div th:if="${item.isSold()}">
+                <div>sold</div>
+            </div>
+        </td>
+        <td>
+            <a th:href="@{'/edititem/{id}'(id=${item.getId()})}" th:text="Edit" > </a>
+        </td>
+        <td>
+            <a th:href="@{'/sell/{id}'(id=${item.getId()})}" th:text="'Sell this copy'" > </a>
+        </td>
     </tr>
 </table>
 </body>

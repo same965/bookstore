@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bookstore #</title>
+    <meta charset="utf-8" />
+</head>
+<body>
+<h1 style="font-size: 60px; color: darkblue">Bookstore</h1>
+<h3 style="font-size: 36px; color: lightseagreen">Edit item data</h3>
+<p th:text=" 'Author: ' + ${item.getBook().getAuthor()}"></p>
+<p th:text=" 'Title: ' + ${item.getBook().getTitle()}"></p>
+<p th:text=" 'Historical Price: ' + ${item.getBook().getHistoricalPrice()}"></p>
+
+<form action="#" th:action="@{/editeditem}" method="post">
+    <div>
+        <input type="hidden" name="id" id="id" th:value="${item.getId()}" />
+    </div>
+    <div>
+        <label for="quality">Quality:</label>
+        <select id="quality" name="quality" >
+            <option th:selected="${item.getQuality()}" ></option>
+            <option value="1">poor quality</option>
+            <option value="2">fair quality</option>
+            <option value="3">good quality</option>
+        </select>
+    </div>
+    <div>
+        <label for="price">Price:</label>
+        <input type="text" id="price" name="price" />
+    </div>
+    <div>
+        <input type="submit" value="Submit"> <a th:href="@{/inventory}" th:text="Cancel" > </a>
+    </div>
+</form>
+</body>
+</html>

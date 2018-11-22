@@ -108,4 +108,18 @@ public class WebController {
         return "searchitem";
     }
 
+    @GetMapping("/edititem/{id}")
+    public String editItem(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("item", itemService.getItemById(id));
+        return "edit";
+    }
+
+    @PostMapping("/editeditem")
+    public String updateItem(@ModelAttribute("id") Long id,
+                             @ModelAttribute("quality") int quality,
+                             @ModelAttribute("price") int price) {
+        itemService.updateItem(id, quality, price);
+        return "redirect:/inventory";
+    }
+
 }
