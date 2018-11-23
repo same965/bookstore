@@ -116,11 +116,17 @@ public class WebController {
     }
 
     @PostMapping("/editeditem")
-    public String updateItem(@ModelAttribute("id") Long id,
+    public String updatedItem(@ModelAttribute("id") Long id,
                              @ModelAttribute("quality") Quality quality,
                              @ModelAttribute("price") int price) {
         itemService.updateItem(id, quality, price);
         return "redirect:/inventory";
+    }
+
+    @GetMapping("/sell/{id}")
+    public String sellItem(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("item", itemService.getItemById(id));
+        return "sellitem";
     }
 
 }

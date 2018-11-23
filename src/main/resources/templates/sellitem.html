@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bookstore #</title>
+    <meta charset="utf-8" />
+</head>
+<body>
+<h1 style="font-size: 60px; color: darkblue">Bookstore</h1>
+<h3 style="font-size: 36px; color: lightseagreen">Sell a copy:</h3>
+<p th:text=" 'Author: ' + ${item.getBook().getAuthor()}"></p>
+<p th:text=" 'Title: ' + ${item.getBook().getTitle()}"></p>
+<p th:text=" 'Purchasing Price: ' + ${item.getCost()}"></p>
+<p th:text=" 'Quality: ' + ${item.getQuality().toString().toLowerCase()}"></p>
+
+<form action="#" th:action="@{/sold}" method="post">
+    <div>
+        <input type="hidden" name="id" id="id" th:value="${item.getId()}" />
+    </div>
+    <div>
+        <label for="price">Price:</label>
+        <input type="text" id="price" required name="price" th:value="${item.getPrice()}" />
+    </div>
+    <div>
+        <label for="customer">Customer:</label>
+        <input type="text" id="customer" required name="customer"/>
+    </div>
+    <div>
+        <input type="submit" value="Submit">
+    </div>
+</form>
+
+</body>
+</html>
