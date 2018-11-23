@@ -19,9 +19,10 @@
         <label for="quality">Quality:</label>
         <select id="quality" name="quality" >
             <option selected disabled>Please select...</option>
-            <option value="1">poor quality</option>
-            <option value="2">fair quality</option>
-            <option value="3">good quality</option>
+            <option th:each="itemquality : ${T(hu.oparin.bookstore.models.Quality).values()}"
+                    th:value="${itemquality}"
+                    th:text="${#strings.toLowerCase(itemquality)}">
+            </option>
         </select>
     </div>
     <div>

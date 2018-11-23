@@ -31,17 +31,7 @@
         <tr th:each="item : ${items}" style="background-color:lightgray" align="center">
             <td th:text="${item.getBook().getAuthor()}"></td>
             <td th:text="${item.getBook().getTitle()}"></td>
-            <td>
-                <div th:if="${item.getQuality() == 1}">
-                    <div>poor</div>
-                </div>
-                <div th:if="${item.getQuality() == 2}">
-                    <div>fair</div>
-                </div>
-                <div th:if="${item.getQuality() == 3}">
-                    <div>good</div>
-                </div>
-            </td>
+            <td th:text="${item.getQuality().toString().toLowerCase()}"></td>
             <td th:text="${item.getCost()}"></td>
             <td>
                 <div th:if="${item.getPrice() > 0}" th:text="${item.getPrice()}"></div>
@@ -58,7 +48,7 @@
                 </div>
             </td>
             <td>
-                <a th:href="@{'/edititem/{id}'(id=${item.getId()})}" th:text="Edit" > </a>
+                <a th:href="@{'/edititem/{id}'(id=${item.getId()})} " th:text="Edit" > </a>
             </td>
             <td>
                 <a th:href="@{'/sell/{id}'(id=${item.getId()})}" th:text="'Sell this copy'" > </a>

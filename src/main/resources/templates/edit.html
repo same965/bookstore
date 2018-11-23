@@ -18,15 +18,16 @@
     <div>
         <label for="quality">Quality:</label>
         <select id="quality" name="quality" >
-            <option th:selected="${item.getQuality()}" ></option>
-            <option value="1">poor quality</option>
-            <option value="2">fair quality</option>
-            <option value="3">good quality</option>
+            <option th:each="itemquality : ${T(hu.oparin.bookstore.models.Quality).values()}"
+                    th:value="${itemquality}"
+                    th:text="${#strings.toLowerCase(itemquality)}"
+                    th:selected="(${itemquality} == *{item.getQuality()})">
+            </option>
         </select>
     </div>
     <div>
         <label for="price">Price:</label>
-        <input type="text" id="price" name="price" />
+        <input type="text" id="price" required name="price" th:value="${item.getPrice()}" />
     </div>
     <div>
         <input type="submit" value="Submit"> <a th:href="@{/inventory}" th:text="Cancel" > </a>

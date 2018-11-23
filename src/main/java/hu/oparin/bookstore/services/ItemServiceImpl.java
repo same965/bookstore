@@ -2,7 +2,7 @@ package hu.oparin.bookstore.services;
 
 import hu.oparin.bookstore.models.Book;
 import hu.oparin.bookstore.models.Item;
-import hu.oparin.bookstore.repositories.BookRepository;
+import hu.oparin.bookstore.models.Quality;
 import hu.oparin.bookstore.repositories.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +29,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public void create(Long id, int quality, int cost) {
+    public void create(Long id, Quality quality, int cost) {
         Book book = bookService.getBookById(id);
         itemRepository.save(new Item(book, quality, 0, cost, false));
     }
@@ -56,7 +56,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public void updateItem(Long id, int quality, int price) {
+    public void updateItem(Long id, Quality quality, int price) {
         Item item = getItemById(id);
         item.setPrice(price);
         item.setQuality(quality);

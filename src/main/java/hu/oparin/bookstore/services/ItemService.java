@@ -1,13 +1,14 @@
 package hu.oparin.bookstore.services;
 
 import hu.oparin.bookstore.models.Item;
+import hu.oparin.bookstore.models.Quality;
 
 import java.util.List;
 
 public interface ItemService {
     List<Item> getItems();
-    void create(Long id, int quality, int cost);
+    void create(Long id, Quality quality, int cost);
     List<Item> getItemsByAuthor(String author);
     Item getItemById(Long id);
-    void updateItem(Long id, int quality, int price);
+    void updateItem(Long id, Quality quality, int price);
 }

@@ -1,6 +1,7 @@
 package hu.oparin.bookstore.controllers;
 
 import hu.oparin.bookstore.models.Book;
+import hu.oparin.bookstore.models.Quality;
 import hu.oparin.bookstore.services.BookService;
 import hu.oparin.bookstore.services.CustomerService;
 import hu.oparin.bookstore.services.ItemService;
@@ -95,7 +96,7 @@ public class WebController {
     }
 
     @PostMapping("/addnewitem")
-    public String addNewItem(@ModelAttribute(value = "quality") int quality,
+    public String addNewItem(@ModelAttribute(value = "quality") Quality quality,
                              @ModelAttribute(value = "cost") int cost,
                              @ModelAttribute(value = "id") Long id) {
         itemService.create(id, quality, cost);
@@ -116,7 +117,7 @@ public class WebController {
 
     @PostMapping("/editeditem")
     public String updateItem(@ModelAttribute("id") Long id,
-                             @ModelAttribute("quality") int quality,
+                             @ModelAttribute("quality") Quality quality,
                              @ModelAttribute("price") int price) {
         itemService.updateItem(id, quality, price);
         return "redirect:/inventory";

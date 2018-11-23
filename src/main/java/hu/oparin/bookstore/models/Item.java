@@ -12,7 +12,9 @@ public class Item {
     @JoinColumn(name = "book_id")
     private Book book;
 
-    private int quality;
+    @Enumerated(EnumType.STRING)
+    private Quality quality;
+
     private int price;
     private int cost;
     private boolean isSold;
@@ -20,7 +22,7 @@ public class Item {
     public Item() {
     }
 
-    public Item(Book book, int quality, int price, int cost, boolean isSold) {
+    public Item(Book book, Quality quality, int price, int cost, boolean isSold) {
         this.book = book;
         this.quality = quality;
         this.price = price;
@@ -44,11 +46,11 @@ public class Item {
         this.book = book;
     }
 
-    public int getQuality() {
+    public Quality getQuality() {
         return quality;
     }
 
-    public void setQuality(int quality) {
+    public void setQuality(Quality quality) {
         this.quality = quality;
     }
 
