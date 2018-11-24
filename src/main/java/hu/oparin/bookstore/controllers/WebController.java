@@ -111,7 +111,7 @@ public class WebController {
         transactionService.create(customerService.getCustomerById(customerId), itemService.getItemById(itemID), transactionType);
         return "redirect:/inventory";
     }
- 
+
     @PostMapping("/searchitem")
     public String searchItemByAuthor(@ModelAttribute(value = "author") String author, Model model) {
         model.addAttribute("items", itemService.getItemsByAuthor(author));
