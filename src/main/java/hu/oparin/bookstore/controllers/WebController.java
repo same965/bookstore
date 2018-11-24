@@ -135,6 +135,7 @@ public class WebController {
     @GetMapping("/sell/{id}")
     public String sellItem(@PathVariable("id") Long id, Model model) {
         model.addAttribute("item", itemService.getItemById(id));
+        model.addAttribute("customers", customerService.getCustomers());
         return "sellitem";
     }
 

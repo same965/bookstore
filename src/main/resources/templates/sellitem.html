@@ -22,7 +22,13 @@
     </div>
     <div>
         <label for="customer">Customer:</label>
-        <input type="text" id="customer" required name="customer"/>
+        <select id="customer" name="customer" >
+            <option selected disabled>Please select...</option>
+            <option th:each="customer : ${customers}"
+                    th:value="${customer.getId()}"
+                    th:text="${customer.getName()}">
+            </option>
+        </select>
     </div>
     <div>
         <input type="submit" value="Submit">
