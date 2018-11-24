@@ -1,10 +1,12 @@
 package hu.oparin.bookstore.controllers;
 
 import hu.oparin.bookstore.models.Book;
+import hu.oparin.bookstore.models.Customer;
 import hu.oparin.bookstore.models.Quality;
 import hu.oparin.bookstore.services.BookService;
 import hu.oparin.bookstore.services.CustomerService;
 import hu.oparin.bookstore.services.ItemService;
+import hu.oparin.bookstore.services.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,12 +19,15 @@ public class WebController {
     private ItemService itemService;
     private BookService bookService;
     private CustomerService customerService;
+    private TransactionService transactionService;
 
     @Autowired
-    public WebController(ItemService itemService, BookService bookService, CustomerService customerService) {
+    public WebController(ItemService itemService, BookService bookService, CustomerService customerService,
+                         TransactionService transactionService) {
         this.itemService = itemService;
         this.bookService = bookService;
         this.customerService = customerService;
+        this.transactionService = transactionService;
     }
 
     @GetMapping("/")
@@ -92,17 +97,21 @@ public class WebController {
     public String purchaseBook(@PathVariable("id") Long id, Model model) {
         model.addAttribute("book", bookService.getBookById(id));
         model.addAttribute("recommendation", bookService.calculateRecommendedPrice(id));
+        model.addAttribute("customers", customerService.getCustomers());
         return "newitem";
     }
 
     @PostMapping("/addnewitem")
     public String addNewItem(@ModelAttribute(value = "quality") Quality quality,
                              @ModelAttribute(value = "cost") int cost,
+                             @ModelAttribute(value = "customer") Long customerId,
                              @ModelAttribute(value = "id") Long id) {
-        itemService.create(id, quality, cost);
+        Long itemID = itemService.createAndGetID(id, quality, cost);
+        String transactionType = "purchase";
+        transactionService.create(customerService.getCustomerById(customerId), itemService.getItemById(itemID), transactionType);
         return "redirect:/inventory";
     }
-
+ 
     @PostMapping("/searchitem")
     public String searchItemByAuthor(@ModelAttribute(value = "author") String author, Model model) {
         model.addAttribute("items", itemService.getItemsByAuthor(author));

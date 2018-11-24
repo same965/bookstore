@@ -14,11 +14,9 @@ public class Transaction {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @ManyToMany
-    @JoinTable(name = "transaction_item",
-               joinColumns = {@JoinColumn(name = "transaction_id")},
-               inverseJoinColumns = {@JoinColumn(name = "item_id")})
-    private Set<Item> items;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "item_id")
+    private Item item;
 
     private String type;
     private LocalDate date;
@@ -27,9 +25,9 @@ public class Transaction {
         this.date = LocalDate.now();
     }
 
-    public Transaction(Customer customer, Set<Item> items, String type) {
+    public Transaction(Customer customer, Item item, String type) {
         this.customer = customer;
-        this.items = items;
+        this.item = item;
         this.type = type;
         this.date = LocalDate.now();
     }
@@ -50,12 +48,12 @@ public class Transaction {
         this.customer = customer;
     }
 
-    public Set<Item> getItems() {
-        return items;
+    public Item getItem() {
+        return item;
     }
 
-    public void setItems(Set<Item> items) {
-        this.items = items;
+    public void setItem(Item item) {
+        this.item = item;
     }
 
     public String getType() {

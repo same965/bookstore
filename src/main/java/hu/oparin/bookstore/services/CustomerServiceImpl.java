@@ -29,4 +29,9 @@ public class CustomerServiceImpl implements CustomerService {
     public void create(String name, String email) {
         customerRepository.save(new Customer(name, email));
     }
+
+    @Override
+    public Customer getCustomerById(Long id) {
+        return customerRepository.findById(id).get();
+    }
 }

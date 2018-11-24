@@ -11,4 +11,5 @@ public interface ItemService {
     List<Item> getItemsByAuthor(String author);
     Item getItemById(Long id);
     void updateItem(Long id, Quality quality, int price);
+    Long createAndGetID(Long id, Quality quality, int cost);
 }

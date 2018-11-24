@@ -35,6 +35,17 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    public Long createAndGetID(Long id, Quality quality, int cost) {
+        Item item = new Item();
+        Book book = bookService.getBookById(id);
+        item.setBook(book);
+        item.setQuality(quality);
+        item.setCost(cost);
+        itemRepository.save(item);
+        return item.getId();
+    }
+
+    @Override
     public List<Item> getItemsByAuthor(String author) {
         List<Book> books = bookService.booksByAuthor(author);
 

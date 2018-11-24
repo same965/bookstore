@@ -30,6 +30,16 @@
         <input type="text" id="cost" name="cost" />
     </div>
     <div>
+        <label for="customer">Customer:</label>
+        <select id="customer" name="customer" >
+            <option selected disabled>Please select...</option>
+            <option th:each="customer : ${customers}"
+                    th:value="${customer.getId()}"
+                    th:text="${customer.getName()}">
+            </option>
+        </select>
+    </div>
+    <div>
         <input type="submit" value="Submit">
     </div>
 </form>
