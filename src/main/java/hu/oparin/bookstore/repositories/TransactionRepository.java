@@ -2,7 +2,6 @@ package hu.oparin.bookstore.repositories;
 
 import hu.oparin.bookstore.models.Item;
 import hu.oparin.bookstore.models.Transaction;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,16 +1,11 @@
 package hu.oparin.bookstore.controllers;
 
-import hu.oparin.bookstore.models.Book;
-import hu.oparin.bookstore.models.Budget;
-import hu.oparin.bookstore.models.Customer;
 import hu.oparin.bookstore.models.Quality;
 import hu.oparin.bookstore.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.time.LocalDate;
 
 @Controller
 public class WebController {
@@ -155,5 +150,4 @@ public class WebController {
         model.addAttribute("budgets", budgetService.createYearBudget());
         return "reports";
     }
-
 }

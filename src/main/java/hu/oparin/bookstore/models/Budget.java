@@ -2,8 +2,6 @@ package hu.oparin.bookstore.models;
 
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 @Component
 public class Budget {
     private Integer costs;

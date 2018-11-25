@@ -2,7 +2,6 @@ package hu.oparin.bookstore.models;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Set;
 
 @Entity
 public class Transaction {
