@@ -8,7 +8,7 @@ import java.util.List;
 public interface ItemService {
     List<Item> getItems();
     void create(Long id, Quality quality, int cost);
-    List<Item> getItemsByAuthor(String author);
+    List<Item> searchInStock(String author);
     Item getItemById(Long id);
     void updateItem(Long id, Quality quality, int price);
     Long createAndGetID(Long id, Quality quality, int cost);

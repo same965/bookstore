@@ -114,7 +114,7 @@ public class WebController {
 
     @PostMapping("/searchitem")
     public String searchItemByAuthor(@ModelAttribute(value = "author") String author, Model model) {
-        model.addAttribute("items", itemService.getItemsByAuthor(author));
+        model.addAttribute("items", itemService.searchInStock(author));
         return "searchitem";
     }
 

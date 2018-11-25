@@ -46,7 +46,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public List<Item> getItemsByAuthor(String author) {
+    public List<Item> searchInStock(String author) {
         List<Book> books = bookService.booksByAuthor(author);
 
         List<Item> items = new ArrayList<>();
@@ -54,7 +54,9 @@ public class ItemServiceImpl implements ItemService {
         for (Book book : books) {
             List<Item> foundItems = itemRepository.findAllByBook(book);
             for (Item founditem : foundItems) {
-                items.add(founditem);
+                if (!founditem.isSold()) {
+                    items.add(founditem);
+                }
             }
         }
 
