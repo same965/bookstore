@@ -1,12 +1,10 @@
 package hu.oparin.bookstore.controllers;
 
 import hu.oparin.bookstore.models.Book;
+import hu.oparin.bookstore.models.Budget;
 import hu.oparin.bookstore.models.Customer;
 import hu.oparin.bookstore.models.Quality;
-import hu.oparin.bookstore.services.BookService;
-import hu.oparin.bookstore.services.CustomerService;
-import hu.oparin.bookstore.services.ItemService;
-import hu.oparin.bookstore.services.TransactionService;
+import hu.oparin.bookstore.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,14 +18,16 @@ public class WebController {
     private BookService bookService;
     private CustomerService customerService;
     private TransactionService transactionService;
+    private BudgetService budgetService;
 
     @Autowired
     public WebController(ItemService itemService, BookService bookService, CustomerService customerService,
-                         TransactionService transactionService) {
+                         TransactionService transactionService, BudgetService budgetService) {
         this.itemService = itemService;
         this.bookService = bookService;
         this.customerService = customerService;
         this.transactionService = transactionService;
+        this.budgetService = budgetService;
     }
 
     @GetMapping("/")
@@ -148,6 +148,12 @@ public class WebController {
         String transactionType = "sale";
         transactionService.create(customerService.getCustomerById(customerId), itemService.getItemById(itemId), transactionType);
         return "redirect:/inventory";
+    }
+
+    @GetMapping("/reports")
+    public String reportBudget(Model model) {
+        model.addAttribute("budgets", budgetService.createYearBudget());
+        return "reports";
     }
 
 }

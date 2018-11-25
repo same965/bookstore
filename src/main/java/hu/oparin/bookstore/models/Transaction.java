@@ -63,4 +63,8 @@ public class Transaction {
     public void setType(String type) {
         this.type = type;
     }
+
+    public LocalDate getDate() {
+        return date;
+    }
 }
