@@ -37,18 +37,20 @@
                 </div>
             </td>
             <td>
+                <div th:unless="${item.isSold()}">for sale</div>
+                <div th:if="${item.isSold()}">sold</div>
+            </td>
+            <td>
+                <div th:if="${item.isSold()}"></div>
                 <div th:unless="${item.isSold()}">
-                    <div>for sale</div>
-                </div>
-                <div th:if="${item.isSold()}">
-                    <div>sold</div>
+                    <a th:href="@{'/edititem/{id}'(id=${item.getId()})} " th:text="Edit" > </a>
                 </div>
             </td>
             <td>
-                <a th:href="@{'/edititem/{id}'(id=${item.getId()})} " th:text="Edit" > </a>
-            </td>
-            <td>
-                <a th:href="@{'/sell/{id}'(id=${item.getId()})}" th:text="'Sell this copy'" > </a>
+                <div th:if="${item.isSold()}">Sold copy</div>
+                <div th:unless="${item.isSold()}">
+                    <a th:href="@{'/sell/{id}'(id=${item.getId()})}" th:text="'Sell this copy'" > </a>
+                </div>
             </td>
         </tr>
     </table>

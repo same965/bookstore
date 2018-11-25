@@ -139,4 +139,15 @@ public class WebController {
         return "sellitem";
     }
 
+    @PostMapping("/sold")
+    public String soldItem(@ModelAttribute("id") Long itemId,
+                           @ModelAttribute("price") int price,
+                           @ModelAttribute("customer") Long customerId) {
+        itemService.getItemById(itemId).setPrice(price);
+        itemService.getItemById(itemId).setSold(true);
+        String transactionType = "sale";
+        transactionService.create(customerService.getCustomerById(customerId), itemService.getItemById(itemId), transactionType);
+        return "redirect:/inventory";
+    }
+
 }
