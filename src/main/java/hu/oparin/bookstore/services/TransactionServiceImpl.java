@@ -18,6 +18,8 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public void create(Customer customer, Item item, String transactionType) {
-        transactionRepository.save(new Transaction(customer, item, transactionType));
+        if (transactionRepository.findAllByItem(item).size() <= 2) {
+            transactionRepository.save(new Transaction(customer, item, transactionType));
+        }
     }
 }
