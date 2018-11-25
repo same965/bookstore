@@ -105,8 +105,8 @@ public class WebController {
     public String addNewItem(@ModelAttribute(value = "quality") Quality quality,
                              @ModelAttribute(value = "cost") int cost,
                              @ModelAttribute(value = "customer") Long customerId,
-                             @ModelAttribute(value = "id") Long id) {
-        Long itemID = itemService.createAndGetID(id, quality, cost);
+                             @ModelAttribute(value = "id") Long bookId) {
+        Long itemID = itemService.createAndGetID(bookId, quality, cost);
         String transactionType = "purchase";
         transactionService.create(customerService.getCustomerById(customerId), itemService.getItemById(itemID), transactionType);
         return "redirect:/inventory";
