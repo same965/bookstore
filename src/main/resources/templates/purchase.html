@@ -1,22 +1,37 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Bookstore #</title>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8"/>
+    <title>Bookstore Application</title>
+    <link th:href="@{/styles.css}" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <h1 style="font-size: 60px; color: darkblue">Bookstore</h1>
-    <h3 style="font-size: 36px; color: lightseagreen">Purchasing new book:</h3>
-    <h4 style="font-size: 30px; color: lightseagreen">Search books by author in previous transactions</h4>
-    <form action="#" th:action="@{/purchase/book}" method="post">
-        <label for="author">Author:</label>
-        <input type="text" minlength="1" id="author" name="author" required/>
-        <input type="submit" value="Check author">
-    </form>
-    <h4 style="font-size: 30px; color: lightseagreen">Or enter data of a new book</h4>
-    <form action="#" th:action="@{/newbook}" method="get">
-        <input type="submit" value="Add new book">
-    </form>
-
+<div id="background">
+    <div id="content">
+        <nav class="navigation-bar">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/inventory">Inventory</a></li>
+                <li><a href = "/customer">Customers</a></li>
+                <li><a href = "/reports">Reports</a></li>
+                <div class="right_padding">
+                    <li><a href="https://github.com/same965/bookstore">GITHUB</a></li>
+                </div>
+            </ul>
+            </nav>
+        <h1>Bookstore</h1>
+        <h3>Purchasing new book</h3>
+        <h4 style="font-size: 18px; color: darkblue">Search books by author in previous transactions</h4>
+        <form action="#" th:action="@{/purchase/book}" method="post">
+            <label for="author">Author:</label>
+            <input type="text" minlength="1" id="author" name="author" required/>
+            <input type="submit" value="Check author">
+        </form>
+        <h4 style="font-size: 18px; color: darkblue">Or enter data of a new book</h4>
+        <form action="#" th:action="@{/newbook}" method="get">
+            <input type="submit" value="Add new book">
+        </form>
+    </div>
+</div>
 </body>
 </html>

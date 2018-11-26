@@ -3,28 +3,42 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Bookstore Application</title>
+    <link th:href="@{/styles.css}" rel="stylesheet" type="text/css">
 </head>
-<h1>Customer</h1>
 <body>
-<a href = "/">Home</a>
-<br>
-<form action="#" th:action="@{/newcustomer}" method="get">
-    <div>
-        <input type="submit" value="Add new customer">
+<div id="background">
+    <div id="content">
+        <nav class="navigation-bar">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/inventory">Inventory</a></li>
+                <li><a href="/purchase">Purchase</a></li>
+                <li><a href = "/reports">Reports</a></li>
+                <div class="right_padding">
+                    <li><a href="https://github.com/same965/bookstore">GITHUB</a></li>
+                </div>
+            </ul>
+        </nav>
+        <h1>Bookstore</h1>
+        <h3>Customers</h3>
+        <br>
+        <form action="#" th:action="@{/newcustomer}" method="get">
+            <div>
+                <input type="submit" value="Add new customer">
+            </div>
+        </form>
+        <br>
+        <table style="width:50%; height:100px; font-size: large">
+            <tr style="background-color:lightblue">
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+            <tr th:each="customer : ${customers}" style="background-color:lightgray" align="center">
+                <td th:text="${customer.getName()}"></td>
+                <td th:text="${customer.getEmail()}"></td>
+            </tr>
+        </table>
     </div>
-</form>
-<br>
-<table style="width:50%; height:100px; font-size: large">
-    <tr style="background-color:lightblue">
-        <th>ID</th>
-        <th>Name</th>
-        <th>Email</th>
-    </tr>
-    <tr th:each="customer : ${customers}" style="background-color:lightgray" align="center">
-        <td th:text="${customer.getId()}"></td>
-        <td th:text="${customer.getName()}"></td>
-        <td th:text="${customer.getEmail()}"></td>
-    </tr>
-</table>
+</div>
 </body>
 </html>

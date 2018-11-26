@@ -3,27 +3,39 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Bookstore Application</title>
+    <link th:href="@{/styles.css}" rel="stylesheet" type="text/css">
 </head>
 <body>
-<h1>Bookstore</h1>
-<ul>
-    <li>
-        <a href = "/">Home</a>
-    </li>
-</ul>
-<table style="width:50%; height:100px; font-size: large">
-    <tr style="background-color:lightblue">
-        <th>Month</th>
-        <th>Costs</th>
-        <th>Revenues</th>
-        <th>Balance</th>
-    </tr>
-    <tr th:each="budget : ${budgets}" style="background-color:lightgray" align="center">
-        <td th:text="${budgets.indexOf(budget) + 1}"></td>
-        <td th:text="${budget.getCosts()}"></td>
-        <td th:text="${budget.getRevenues()}"></td>
-        <td th:text="${budget.getRevenues() - budget.getCosts()}"></td>
-    </tr>
-</table>
+<div id="background">
+    <div id="content">
+        <nav class="navigation-bar">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/inventory">Inventory</a></li>
+                <li><a href="/purchase">Purchase</a></li>
+                <li><a href = "/customer">Customers</a></li>
+                <div class="right_padding">
+                    <li><a href="https://github.com/same965/bookstore">GITHUB</a></li>
+                </div>
+            </ul>
+        </nav>
+        <h1>Bookstore</h1>
+        <h3>Budget report</h3>
+        <table style="width:50%; height:100px; font-size: medium">
+            <tr style="background-color:lightblue">
+                <th>Month</th>
+                <th>Costs</th>
+                <th>Revenues</th>
+                <th>Balance</th>
+            </tr>
+            <tr th:each="budget : ${budgets}" style="background-color:lightgray" align="center">
+                <td th:text="${budgets.indexOf(budget) + 1}"></td>
+                <td th:text="${budget.getCosts()}"></td>
+                <td th:text="${budget.getRevenues()}"></td>
+                <td th:text="${budget.getRevenues() - budget.getCosts()}"></td>
+            </tr>
+        </table>
+    </div>
+</div>
 </body>
 </html>

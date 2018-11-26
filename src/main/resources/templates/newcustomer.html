@@ -1,24 +1,42 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Bookstore #</title>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8"/>
+    <title>Bookstore Application</title>
+    <link th:href="@{/styles.css}" rel="stylesheet" type="text/css">
 </head>
 <body>
-<h1 style="font-size: 60px; color: darkblue">Bookstore</h1>
-<h3 style="font-size: 36px; color: lightseagreen">New Customer:</h3>
-<form action="#" th:action="@{/addnewcustomer}" method="post">
-    <div>
-        <label for="name">Name:</label>
-        <input type="text" minlength="1" id="name" name="name" required/>
+<div id="background">
+    <div id="content">
+        <nav class="navigation-bar">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/inventory">Inventory</a></li>
+                <li><a href="/purchase">Purchase</a></li>
+                <li><a href = "/customer">Customers</a></li>
+                <li><a href = "/reports">Reports</a></li>
+                <div class="right_padding">
+                    <li><a href="https://github.com/same965/bookstore">GITHUB</a></li>
+                </div>
+            </ul>
+        </nav>
+        <h1>Bookstore</h1>
+        <h3>New Customer</h3>
+        <form action="#" th:action="@{/addnewcustomer}" method="post">
+            <div style="padding-top: 10px">
+                <label for="name">Name:</label>
+                <input style="width: 210px" type="text" minlength="1" id="name" name="name" required/>
+            </div>
+            <div style="padding-top: 10px">
+                <label for="email">Email:</label>
+                <input style="width: 200px" type="email" placeholder="Please enter email address" id="email" name="email" required/>
+            </div>
+            <br>
+            <div>
+                <input type="submit" value="Submit"> <a th:href="@{/customer}" th:text="Cancel" > </a>
+            </div>
+        </form>
     </div>
-    <div>
-        <label for="email">Email:</label>
-        <input type="email" placeholder="Please enter your email" id="email" name="email" required/>
-    </div>
-    <div>
-        <input type="submit" value="Submit">
-    </div>
-</form>
+</div>
 </body>
 </html>

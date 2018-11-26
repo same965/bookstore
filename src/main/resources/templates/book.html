@@ -3,34 +3,50 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Bookstore Application</title>
+    <link th:href="@{/styles.css}" rel="stylesheet" type="text/css">
 </head>
-<h1>Book</h1>
 <body>
-<a href = "/">Home</a>
-<br>
-<p th:text=" 'Author: ' + ${book.getAuthor()}"></p>
-<p th:text=" 'Title: ' + ${book.getTitle()}"></p>
-<p th:text=" 'Historical Price: ' + ${book.getHistoricalPrice()}"></p>
-<p>Rarity: </p>
-    <th:block th:switch="${book.getRarity()}">
-        <div th:case="1">very rare</div>
-        <div th:case="2">slightly rare</div>
-        <div th:case="3">not rare</div>
-    </th:block>
-<p>Liquidity: </p>
-<th:block th:switch="${book.getLiquidity()}">
-    <div th:case="1">slightly liquid</div>
-    <div th:case="2">quite liquid</div>
-    <div th:case="3">very liquid</div>
-</th:block>
-<br>
-<form action="#" th:action="@{/purchase/book/} + ${id}" method="get">
-    <div>
-        <input type="hidden" name="id" id="id" th:value="${book.getId()}" />
+<div id="background">
+    <div id="content">
+        <nav class="navigation-bar">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/inventory">Inventory</a></li>
+                <li><a href="/purchase">Purchase</a></li>
+                <li><a href = "/customer">Customers</a></li>
+                <li><a href = "/reports">Reports</a></li>
+                <div class="right_padding">
+                    <li><a href="https://github.com/same965/bookstore">GITHUB</a></li>
+                </div>
+            </ul>
+        </nav>
+    <h1>Bookstore</h1>
+    <h3>Book</h3>
+        <p th:text=" 'Author: ' + ${book.getAuthor()}"></p>
+        <p th:text=" 'Title: ' + ${book.getTitle()}"></p>
+        <p th:text=" 'Historical Price: ' + ${book.getHistoricalPrice()}"></p>
+        <p style="padding-top: 5px">Rarity: </p>
+        <th:block th:switch="${book.getRarity()}">
+            <div th:case="1">very rare</div>
+            <div th:case="2">slightly rare</div>
+            <div th:case="3">not rare</div>
+        </th:block>
+        <p style="padding-top: 5px">Liquidity: </p>
+        <th:block th:switch="${book.getLiquidity()}">
+            <div th:case="1">slightly liquid</div>
+            <div th:case="2">quite liquid</div>
+            <div th:case="3">very liquid</div>
+        </th:block>
+        <br>
+        <form action="#" th:action="@{/purchase/book/} + ${id}" method="get">
+            <div>
+                <input type="hidden" name="id" id="id" th:value="${book.getId()}" />
+            </div>
+            <div>
+                <input type="submit" value="Purchase a copy of this book">
+            </div>
+        </form>
     </div>
-    <div>
-        <input type="submit" value="Purchase a copy of this book">
-    </div>
-</form>
+</div>
 </body>
 </html>

@@ -1,37 +1,56 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Bookstore #</title>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8"/>
+    <title>Bookstore Application</title>
+    <link th:href="@{/styles.css}" rel="stylesheet" type="text/css">
 </head>
 <body>
-<h1 style="font-size: 60px; color: darkblue">Bookstore</h1>
-<h3 style="font-size: 36px; color: lightseagreen">Edit item data</h3>
-<p th:text=" 'Author: ' + ${item.getBook().getAuthor()}"></p>
-<p th:text=" 'Title: ' + ${item.getBook().getTitle()}"></p>
-<p th:text=" 'Historical Price: ' + ${item.getBook().getHistoricalPrice()}"></p>
-<p th:text=" 'Purchasing Price: ' + ${item.getCost()}"></p>
-<form action="#" th:action="@{/editeditem}" method="post">
-    <div>
-        <input type="hidden" name="id" id="id" th:value="${item.getId()}" />
+<div id="background">
+    <div id="content">
+        <nav class="navigation-bar">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/inventory">Inventory</a></li>
+                <li><a href="/purchase">Purchase</a></li>
+                <li><a href = "/customer">Customers</a></li>
+                <li><a href = "/reports">Reports</a></li>
+                <div class="right_padding">
+                    <li><a href="https://github.com/same965/bookstore">GITHUB</a></li>
+                </div>
+            </ul>
+        </nav>
+        <h1>Bookstore</h1>
+        <h3>Edit item data</h3>
+        <p th:text=" 'Author: ' + ${item.getBook().getAuthor()}"></p>
+        <p th:text=" 'Title: ' + ${item.getBook().getTitle()}"></p>
+        <p th:text=" 'Historical Price: ' + ${item.getBook().getHistoricalPrice()}"></p>
+        <p th:text=" 'Purchasing Price: ' + ${item.getCost()}"></p>
+        <form action="#" th:action="@{/editeditem}" method="post">
+            <div>
+                <input type="hidden" name="id" id="id" th:value="${item.getId()}" />
+            </div>
+            <div>
+                <label for="quality">Quality:</label>
+                <select required id="quality" name="quality" >
+                    <option value="">Please select...</option>
+                    <option th:each="itemquality : ${T(hu.oparin.bookstore.models.Quality).values()}"
+                            th:value="${itemquality}"
+                            th:text="${#strings.toLowerCase(itemquality)}"
+                            th:selected="(${itemquality} == *{item.getQuality()})">
+                    </option>
+                </select>
+            </div>
+            <div style="padding-top: 10px">
+                <label for="price">Selling Price:</label>
+                <input type="text" id="price" required name="price" th:value="${item.getPrice()}" />
+            </div>
+            <br>
+            <div>
+                <input type="submit" value="Submit"> <a th:href="@{/inventory}" th:text="Cancel" > </a>
+            </div>
+        </form>
     </div>
-    <div>
-        <label for="quality">Quality:</label>
-        <select id="quality" name="quality" >
-            <option th:each="itemquality : ${T(hu.oparin.bookstore.models.Quality).values()}"
-                    th:value="${itemquality}"
-                    th:text="${#strings.toLowerCase(itemquality)}"
-                    th:selected="(${itemquality} == *{item.getQuality()})">
-            </option>
-        </select>
-    </div>
-    <div>
-        <label for="price">Selling Price:</label>
-        <input type="text" id="price" required name="price" th:value="${item.getPrice()}" />
-    </div>
-    <div>
-        <input type="submit" value="Submit"> <a th:href="@{/inventory}" th:text="Cancel" > </a>
-    </div>
-</form>
+</div>
 </body>
 </html>

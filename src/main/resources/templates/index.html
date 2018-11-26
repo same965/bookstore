@@ -3,18 +3,28 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Bookstore Application</title>
+    <link th:href="@{/styles.css}" rel="stylesheet" type="text/css">
 </head>
 <body>
-<h1>Bookstore</h1>
-<ul>
-    <li><a href = "/inventory">Inventory</a>
-    </li>
-    <li><a href = "/purchase">Purchase new book </a>
-    </li>
-    <li><a href = "/customer">Customer list</a>
-    </li>
-    <li><a href = "/reports">Reports</a>
-    </li>
-</ul>
+<div id="background">
+    <div id="content">
+        <nav class="navigation-bar">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <div class="right_padding">
+                    <li><a href="https://github.com/same965/bookstore">GITHUB</a></li>
+                </div>
+            </ul>
+        </nav>
+        <h1>Bookstore</h1>
+        <h3>Home</h3>
+        <ul style="font-size: 24px; list-style-type: none">
+            <li style="padding-top: 15px"><a href="/inventory">Inventory</a></li>
+            <li style="padding-top: 15px"><a href="/purchase">Purchase new book</a></li>
+            <li style="padding-top: 15px"><a href = "/customer">Customer list</a></li>
+            <li style="padding-top: 15px"><a href = "/reports">Reports</a></li>
+        </ul>
+    </div>
+</div>
 </body>
 </html>
