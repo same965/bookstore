@@ -35,8 +35,10 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public boolean checkAuthor(String author) {
-        if (bookRepository.findAllByAuthorIsContaining(author) != null) {
-            return true;
+        if (author != null) {
+            if (bookRepository.findAllByAuthorIsContaining(author) != null) {
+                return true;
+            }
         }
         return false;
     }
